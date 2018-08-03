@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Persons</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+<main>
+
+    <form method="post">
+        <input type="text" placeholder="Имя" name="firstName"/>
+        <input type="text" placeholder="Фамилия" name="lastName"/>
+        <input type="text" placeholder="Отчество" name="patronymic"/>
+        <input type="number" placeholder="ИНН" name="inn"  />
+        <input type="number" placeholder="СНИЛС" name="snils"/>
+        <input type="Date" placeholder="Дата Рожденияо" name="dateOfBirth"/>
+        <input type="text" placeholder="Названия Компани" name="name"/>
+        <input type="number" placeholder="Базовая ставка" name="base_rate"/>
+        <input type="Date" placeholder="Дата входа" name="date_arrival"/>
+        <input type="Date" placeholder="Дата выхода" name="date_exit"/>
+        <input type="submit"/>
+    </form>
+
+    <form method="Post" action="filter" >
+        <input type="text" placeholder="Фамилия" name="lastName"/>
+        <input type="submit"/>
+    </form>
+
+    <h1>Persons</h1>
+    <ul>
+        {{#persons}}
+        <li>
+            <h3>{{id}} | {{firstName}} | {{lastName}} | {{patronymic}} | {{inn}} | {{snils}} | {{dateOfBirth}}</h3>
+        </li>
+        {{/persons}}
+    </ul>
+
+    <h1>Company</h1>
+    <ul>
+        {{#company}}
+        <li>
+            <h3>{{name}}</h3>
+        </li>
+        {{/company}}
+    </ul>
+
+    <h1>JobInfo</h1>
+    <ul>
+        {{#jobInfo}}
+        <li>
+            <h3>{{baseRate}} | {{dateArrival}}</h3>
+        </li>
+        {{/jobInfo}}
+    </ul>
+
+</main>
+</body>
+</html>
