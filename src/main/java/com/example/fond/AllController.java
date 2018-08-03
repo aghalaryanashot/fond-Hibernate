@@ -41,7 +41,7 @@ public class AllController {
     public String add(
             @RequestParam(name = "firstName") String frstName,
             @RequestParam(name = "lastName") String lastName,
-            @RequestParam(name = "patronymic") String patronymic,
+            @RequestParam(required = false,name = "patronymic") String patronymic,
             @RequestParam(name = "inn") long inn,
             @RequestParam(name = "snils") long snils,
             @RequestParam(name = "dateOfBirth") @DateTimeFormat(pattern="yyyy-MM-dd") Date dateOfBirth,
@@ -67,11 +67,16 @@ public class AllController {
 
     @PostMapping(value = "filter")
     public String filter(
-            @RequestParam(name = "lastName") String lastName,
+            @RequestParam(name = "firstName") String firstname,
+            @RequestParam(name = "lastName") String lastname,
+            @RequestParam(name = "START")@DateTimeFormat(pattern="yyyy-MM-dd") Date start,
+            @RequestParam(name = "BETWEEN")@DateTimeFormat(pattern="yyyy-MM-dd") Date between,
             Map<String, Object>model
     ){
-         List<Person> person = personRepo.findBylastName(lastName);
+         List<Person> person = personRepo.findByLastNameOrFirstName(lastname,firstname);
          model.put("persons",person);
+         List<Person> persondata = personRepo.findBydateOfBirthBetween(start,between);
+         model.put("persons",persondata);
          return "listPersons";
     }
 
@@ -80,4 +85,6 @@ public class AllController {
     public List<Person> getAll() {
         return (List <Person>) personRepo.findAll();
     }
+
+
 }

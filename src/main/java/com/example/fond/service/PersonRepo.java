@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 
 public interface PersonRepo extends CrudRepository<Person,Long> {
-    List<Person> findBylastName(String lastname);
-    @Query("select u from Person u where x.dateOfBirth between 1? and ?2")
-    Person findByStartDateBetween(Date startDate, Date between);
+    List<Person> findByLastNameOrFirstName(String lastname,String firstname);
+    List<Person> findBydateOfBirthBetween(Date start, Date between);
 }

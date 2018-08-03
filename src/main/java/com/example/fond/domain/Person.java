@@ -11,8 +11,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "person")
-@NamedQuery(name = "Person.findByStartDateBetween",
-        query = "select u from Person u where x.dateOfBirth between 1? and ?2")
 public class Person {
     @Id
     @GeneratedValue(strategy = IDENTITY)
