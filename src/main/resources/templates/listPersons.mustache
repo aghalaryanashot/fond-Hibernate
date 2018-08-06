@@ -33,7 +33,7 @@
     <ul>
         {{#persons}}
         <li>
-            <h3>{{id}} | {{firstName}} | {{lastName}} | {{patronymic}} | {{inn}} | {{snils}} | {{dateOfBirth}}</h3>
+            <h3>{{id}} | {{firstName}} | {{lastName}} | {{& patronymic}} | {{inn}} | {{snils}} | {{dateOfBirth}}</h3>
         </li>
         {{/persons}}
     </ul>
@@ -51,7 +51,7 @@
     <ul>
         {{#jobInfo}}
         <li>
-            <h3>{{baseRate}} | {{dateArrival}}</h3>
+            <h3>{{baseRate}} | {{& dateArrival}}</h3>
         </li>
         {{/jobInfo}}
     </ul>

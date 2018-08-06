@@ -41,14 +41,14 @@ public class AllController {
     public String add(
             @RequestParam(name = "firstName") String frstName,
             @RequestParam(name = "lastName") String lastName,
-            @RequestParam(required = false,name = "patronymic") String patronymic,
+            @RequestParam(required = false, name = "patronymic") String patronymic,
             @RequestParam(name = "inn") long inn,
             @RequestParam(name = "snils") long snils,
             @RequestParam(name = "dateOfBirth") @DateTimeFormat(pattern="yyyy-MM-dd") Date dateOfBirth,
             @RequestParam(name="name") String name,
             @RequestParam(name = "base_rate") int base_rate,
-            @RequestParam(name = "date_arrival") @DateTimeFormat(pattern="yyyy-MM-dd") Date date_arrival,
-            @RequestParam(name = "date_exit") @DateTimeFormat(pattern="yyyy-MM-dd") Date date_exit,
+            @RequestParam(required = false, name = "date_arrival") @DateTimeFormat(pattern="yyyy-MM-dd") Date date_arrival,
+            @RequestParam(required = false, name = "date_exit") @DateTimeFormat(pattern="yyyy-MM-dd") Date date_exit,
             Map<String, Object> model
     ){
         Person person = new Person(frstName,lastName,patronymic,inn,snils,dateOfBirth);
@@ -67,10 +67,10 @@ public class AllController {
 
     @PostMapping(value = "filter")
     public String filter(
-            @RequestParam(name = "firstName") String firstname,
-            @RequestParam(name = "lastName") String lastname,
-            @RequestParam(name = "START")@DateTimeFormat(pattern="yyyy-MM-dd") Date start,
-            @RequestParam(name = "BETWEEN")@DateTimeFormat(pattern="yyyy-MM-dd") Date between,
+            @RequestParam(required = false, name = "firstName") String firstname,
+            @RequestParam(required = false, name = "lastName") String lastname,
+            @RequestParam(required = false, name = "START")@DateTimeFormat(pattern="yyyy-MM-dd") Date start,
+            @RequestParam(required = false, name = "BETWEEN")@DateTimeFormat(pattern="yyyy-MM-dd") Date between,
             Map<String, Object>model
     ){
          List<Person> person = personRepo.findByLastNameOrFirstName(lastname,firstname);

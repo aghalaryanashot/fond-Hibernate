@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <preConditions>
+        <runningAs username="postgres"/>
+    </preConditions>
+
+    <changeSet id="1" author="Ashot">
+        <createTable tableName="person">
+            <column autoIncrement="true" name="id" type="bigserial" startWith="100">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="patronymic" type="varchar(255)">
+            </column>
+            <column name="inn" type="Bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="snils" type="Bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_of_birth" type="date">
+
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="Ashot">
+        <createTable tableName="company">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="Ashot">
+        <createTable tableName="job_info">
+            <column name="id" type="bigserial" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="person_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="company" references="company(id)"/>
+            </column>
+            <column name="company_id" type="bigint">
+                <constraints nullable="false" foreignKeyName="person" references="person(id)"/>
+            </column>
+            <column name="base_rate" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="date_arrival" type="date">
+            </column>
+            <column name="date_exit" type="date">
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
