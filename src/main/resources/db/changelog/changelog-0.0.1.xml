@@ -51,10 +51,10 @@
                 <constraints primaryKey="true" nullable="false"/>
             </column>
             <column name="person_id" type="bigint">
-                <constraints nullable="false" foreignKeyName="company" references="company(id)"/>
+                <constraints nullable="false" foreignKeyName="person" references="person(id)"/>
             </column>
             <column name="company_id" type="bigint">
-                <constraints nullable="false" foreignKeyName="person" references="person(id)"/>
+                <constraints nullable="false" foreignKeyName="company" references="company(id)"/>
             </column>
             <column name="base_rate" type="int">
                 <constraints nullable="false"/>

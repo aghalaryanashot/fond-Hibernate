@@ -1,5 +1,7 @@
 package com.example.fond.domain;
 
+import io.swagger.annotations.ApiModel;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;

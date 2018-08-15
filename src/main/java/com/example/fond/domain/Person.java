@@ -1,23 +1,31 @@
 package com.example.fond.domain;
 
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "person")
+@ApiModel(description="О человеке  ")
 public class Person {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private long id;
     @NotNull
+    @ApiModelProperty(notes="Имя должно быть как минимум 2 символа")
+    @Size(min=2, message="Имя должно содержать не менее двух символов")
     private String firstName;
     @NotNull
+    @ApiModelProperty(notes="Фамилия должна иметь по крайней мере 2 символа")
+    @Size(min=2, message="Фамилия должно содержать не менее двух символов")
     private String lastName;
     private String patronymic;
     @NotNull
