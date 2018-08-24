@@ -22,12 +22,16 @@ import java.util.Map;
 @Controller
 @Api(value = "/api/v1/files", description = "API версия 1")
 public class AllController {
+    private final PersonRepo personRepo;
+    private final CompanyRepo companyRepo;
+    private final JobInfoRepo jobInfoRepo;
+
     @Autowired
-    private PersonRepo personRepo;
-    @Autowired
-    private CompanyRepo companyRepo;
-    @Autowired
-    private JobInfoRepo jobInfoRepo;
+    public AllController(PersonRepo personRepo, CompanyRepo companyRepo, JobInfoRepo jobInfoRepo) {
+        this.personRepo = personRepo;
+        this.companyRepo = companyRepo;
+        this.jobInfoRepo = jobInfoRepo;
+    }
 
     @DeleteMapping("/jobinfo/{id}")
     public void deleteJobInfo(@PathVariable long id) {
@@ -101,6 +105,7 @@ public class AllController {
         if (firstname == null) {
             throw new NullFirstNameException();
         }
+
         if (personRepo.findByLastNameOrFirstName(lastname, firstname).isEmpty()) {
             throw new EmptyListException("Не найден пользователь с именем " + firstname);
         }
@@ -115,5 +120,4 @@ public class AllController {
     public List <Person> getAll() {
         return (List <Person>) personRepo.findAll();
     }
-
 }
